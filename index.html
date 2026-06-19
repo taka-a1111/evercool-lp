@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>メモリアルクーラー｜ever cool｜お別れを急がず、昨日のままの姿で</title>
+<meta name="description" content="人間用の安置技術を応用した冷却システム。−10℃の安定冷却でご遺体を凍結させることなく安置し、生前のやわらかな姿を保ちます。最短当日配送・最長20日間安置。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF9F5; --surface:#FFFFFF; --surface-soft:#F3F0EA;
+  --navy:#38425F; --blue:#5E97AB; --blue-deep:#3F7385;
+  --blue-pale:#AFD9E0; --blue-mist:#EAF4F6;
+  --accent-warm:#D5BDB3; --accent-pink:#ECDAD6; --green-pale:#D1E4D1;
+  --text:#3C3A37; --text-mid:#6E6A64; --text-light:#9A958E; --line:#E7E2D9;
+  --radius:18px; --shadow:0 14px 40px rgba(56,66,95,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Noto Sans JP",sans-serif; color:var(--text);
+  background:var(--bg); line-height:1.9; font-weight:400;
+  overflow-x:hidden; -webkit-font-smoothing:antialiased;
+  font-feature-settings:"palt";
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.mincho{font-family:"Shippori Mincho",serif}
+.maru{font-family:"Zen Maru Gothic",sans-serif}
+
+/* ===== placeholder（画像ブランク） ===== */
+.ph{
+  background:repeating-linear-gradient(45deg,#F0ECE4,#F0ECE4 12px,#EBE6DC 12px,#EBE6DC 24px);
+  border:1.5px dashed #CDBFA8; border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  color:#A99B83;font-size:.82rem;letter-spacing:.05em;text-align:center;
+  min-height:180px;font-weight:500;
+}
+.ph small{display:block;font-size:.72rem;margin-top:4px;color:#BCAE96;font-weight:400}
+
+/* ===== header ===== */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;transition:.3s;
+}
+.site-header.scrolled{background:rgba(251,249,245,.92);backdrop-filter:blur(10px);box-shadow:0 2px 20px rgba(56,66,95,.06)}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-logo{
+  width:42px;height:42px;border-radius:10px;border:1.5px dashed #BFD8DE;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.55rem;color:#8FB6C0;background:#fff;text-align:center;line-height:1.2;
+}
+.brand-name{font-family:"Shippori Mincho",serif;font-size:1.15rem;letter-spacing:.08em;color:var(--navy);font-weight:600}
+.brand-name span{display:block;font-size:.6rem;letter-spacing:.18em;color:var(--blue);font-family:"Zen Maru Gothic";margin-top:1px}
+.nav{display:flex;align-items:center;gap:26px}
+.nav a{font-size:.86rem;color:var(--text-mid);transition:.2s;font-weight:500}
+.nav a:hover{color:var(--blue-deep)}
+.header-cta{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--blue);color:#fff!important;padding:9px 18px;border-radius:40px;
+  font-size:.84rem;font-weight:700;box-shadow:0 8px 20px rgba(94,151,171,.3);
+}
+.header-cta svg{width:15px;height:15px}
+.nav-toggle{display:none}
+
+/* ===== hero ===== */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;
+  padding:120px 0 80px;
+  background:
+    radial-gradient(120% 90% at 80% 10%,#EAF4F6 0%,transparent 55%),
+    radial-gradient(90% 80% at 10% 90%,#FBEEE9 0%,transparent 50%),
+    var(--bg);
+}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:"Zen Maru Gothic";font-size:.78rem;letter-spacing:.12em;
+  color:var(--blue-deep);background:#fff;border:1px solid var(--blue-pale);
+  padding:6px 16px;border-radius:30px;margin-bottom:26px;
+}
+.hero h1{
+  font-family:"Shippori Mincho",serif;font-weight:600;color:var(--navy);
+  font-size:2.55rem;line-height:1.55;letter-spacing:.02em;margin-bottom:24px;
+}
+.hero h1 b{color:var(--blue-deep);font-weight:700}
+.hero-lead{font-size:1rem;color:var(--text-mid);line-height:2.05;margin-bottom:30px;max-width:30em}
+.hero-brand-tag{font-family:"Zen Maru Gothic";letter-spacing:.2em;font-size:.8rem;color:var(--blue);margin-bottom:34px}
+.hero-cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--blue);color:#fff;padding:16px 30px;border-radius:50px;
+  font-weight:700;font-size:1rem;box-shadow:0 14px 30px rgba(94,151,171,.32);transition:.25s;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 38px rgba(94,151,171,.4)}
+.btn-primary svg{width:19px;height:19px}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;color:var(--blue-deep);
+  font-weight:700;font-size:.95rem;padding:14px 8px;
+}
+.btn-ghost svg{width:18px;height:18px}
+.hero-visual{position:relative}
+.hero-visual .ph{min-height:380px;border-radius:var(--radius);background:#fff;border-color:#C9DEE3}
+.hero-visual .ph div{color:#9DBDC4}
+
+/* badges */
+.badges{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:54px}
+.badge{
+  background:#fff;border-radius:16px;padding:22px 10px;text-align:center;
+  box-shadow:var(--shadow);position:relative;
+}
+.badge-ic{
+  width:54px;height:54px;border-radius:50%;background:var(--blue-pale);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 12px;
+}
+.badge-ic svg{width:26px;height:26px;stroke:var(--blue-deep)}
+.badge b{display:block;font-family:"Zen Maru Gothic";color:var(--navy);font-size:1rem;font-weight:700;line-height:1.4}
+.badge span{font-size:.72rem;color:var(--text-mid)}
+
+/* ===== section common ===== */
+section{padding:88px 0}
+.sec-head{text-align:center;margin-bottom:52px}
+.sec-en{display:block;font-family:"Zen Maru Gothic";letter-spacing:.25em;font-size:.72rem;color:var(--blue);margin-bottom:12px;text-transform:uppercase}
+.sec-title{font-family:"Shippori Mincho",serif;font-size:1.95rem;color:var(--navy);font-weight:600;line-height:1.5}
+.sec-title.sm{font-size:1.6rem}
+.sec-lead{margin-top:16px;color:var(--text-mid);font-size:.96rem}
+
+/* message */
+.message{background:var(--blue-mist);text-align:center}
+.message .big{
+  font-family:"Shippori Mincho",serif;font-size:2.1rem;color:var(--navy);
+  font-weight:600;line-height:1.6;margin-bottom:28px;
+}
+.message .big b{color:var(--blue-deep)}
+.message p{max-width:38em;margin:0 auto;color:var(--text-mid);font-size:1rem;line-height:2.1}
+
+/* features */
+.feat-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:760px;margin:0 auto 56px}
+.feat-item{
+  display:flex;gap:14px;align-items:flex-start;background:#fff;
+  border-radius:14px;padding:18px 20px;box-shadow:0 6px 18px rgba(56,66,95,.05);
+}
+.feat-item .ck{flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:var(--blue-pale);display:flex;align-items:center;justify-content:center;margin-top:3px}
+.feat-item .ck svg{width:15px;height:15px;stroke:var(--blue-deep)}
+.feat-item p{font-size:.92rem;color:var(--text);line-height:1.7}
+.points{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.point{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.point .ph{min-height:150px;border-radius:0;border:none;border-bottom:1.5px dashed #D7C9B2}
+.point-body{padding:22px 20px 26px}
+.point-no{font-family:"Zen Maru Gothic";font-size:.7rem;letter-spacing:.15em;color:var(--blue);font-weight:700}
+.point h3{font-size:1.02rem;color:var(--navy);margin:6px 0 10px;font-weight:700;line-height:1.5}
+.point p{font-size:.84rem;color:var(--text-mid);line-height:1.8}
+
+/* compare */
+.compare{background:var(--surface-soft)}
+.tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.compare-tbl{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.compare-tbl th,.compare-tbl td{padding:16px 14px;text-align:center;font-size:.85rem;border-bottom:1px solid var(--line)}
+.compare-tbl thead th{background:var(--navy);color:#fff;font-family:"Zen Maru Gothic";font-weight:700;font-size:.9rem}
+.compare-tbl thead th.hl{background:var(--blue-deep)}
+.compare-tbl tbody th{background:var(--blue-mist);color:var(--navy);font-weight:700;text-align:left;white-space:nowrap;font-size:.84rem}
+.compare-tbl td.col-mc{background:#F3FAFB;color:var(--text)}
+.mk{font-weight:700;font-size:1.05rem;margin-right:3px}
+.mk.o{color:var(--blue-deep)} .mk.t{color:#C99A57} .mk.x{color:#C77B72}
+.compare-tbl tr:last-child th,.compare-tbl tr:last-child td{border-bottom:none}
+
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:880px;margin:0 auto 28px}
+.plan{background:#fff;border-radius:var(--radius);padding:34px 24px;text-align:center;box-shadow:var(--shadow);position:relative;border:2px solid transparent;transition:.25s}
+.plan.pop{border-color:var(--blue-pale)}
+.plan-tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:.7rem;font-weight:700;padding:5px 16px;border-radius:30px;font-family:"Zen Maru Gothic";letter-spacing:.08em}
+.plan h3{font-family:"Zen Maru Gothic";font-size:1.1rem;color:var(--navy);font-weight:700;margin-bottom:14px}
+.plan .price{font-family:"Shippori Mincho",serif;font-size:2.1rem;color:var(--blue-deep);font-weight:700;line-height:1.1}
+.plan .price small{font-size:.95rem;font-weight:500}
+.plan .per{font-size:.78rem;color:var(--text-light);margin-top:10px;padding-top:12px;border-top:1px dashed var(--line)}
+.plan .per b{color:var(--text-mid);font-size:.92rem}
+.price-notes{max-width:880px;margin:0 auto;background:#fff;border-radius:14px;padding:22px 26px;box-shadow:0 6px 18px rgba(56,66,95,.05)}
+.price-notes li{list-style:none;font-size:.85rem;color:var(--text-mid);padding-left:20px;position:relative;margin:6px 0}
+.price-notes li::before{content:"";position:absolute;left:4px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--blue-pale)}
+
+/* flow */
+.flow{background:var(--blue-mist)}
+.flow-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative}
+.step{background:#fff;border-radius:var(--radius);padding:30px 22px;text-align:center;box-shadow:var(--shadow);position:relative}
+.step-no{font-family:"Zen Maru Gothic";font-size:.7rem;letter-spacing:.15em;color:var(--blue);font-weight:700}
+.step-ic{width:58px;height:58px;border-radius:50%;background:var(--blue-pale);display:flex;align-items:center;justify-content:center;margin:14px auto 16px}
+.step-ic svg{width:28px;height:28px;stroke:var(--blue-deep)}
+.step h3{font-family:"Zen Maru Gothic";font-size:1rem;color:var(--navy);font-weight:700;margin-bottom:8px}
+.step p{font-size:.82rem;color:var(--text-mid);line-height:1.75}
+
+/* generic placeholder sections */
+.ph-sec .ph{min-height:240px}
+.area-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.area-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.area-list span{background:#fff;border:1px solid var(--blue-pale);color:var(--blue-deep);font-weight:700;font-size:.86rem;padding:8px 18px;border-radius:30px}
+.area-note{font-size:.78rem;color:var(--text-light);margin-top:16px}
+
+/* columns */
+.col-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.col-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:.25s;display:flex;flex-direction:column}
+.col-card:hover{transform:translateY(-3px)}
+.col-card .ph{min-height:150px;border-radius:0;border:none;border-bottom:1.5px dashed #D7C9B2}
+.col-body{padding:20px 22px 24px;display:flex;flex-direction:column;flex:1}
+.col-tag{font-family:"Zen Maru Gothic";font-size:.68rem;letter-spacing:.1em;color:var(--blue);font-weight:700;margin-bottom:8px}
+.col-card h3{font-size:.94rem;color:var(--navy);font-weight:700;line-height:1.6;margin-bottom:16px;flex:1}
+.col-more{font-size:.82rem;color:var(--blue-deep);font-weight:700;display:inline-flex;align-items:center;gap:5px}
+.col-more svg{width:14px;height:14px}
+
+/* faq */
+.faq{background:var(--surface-soft)}
+.faq-wrap{max-width:780px;margin:0 auto}
+.faq-item{background:#fff;border-radius:14px;margin-bottom:12px;overflow:hidden;box-shadow:0 4px 14px rgba(56,66,95,.04)}
+.faq-q{display:flex;align-items:flex-start;gap:14px;padding:20px 24px;cursor:pointer;font-weight:700;color:var(--navy);font-size:.95rem;line-height:1.6}
+.faq-q .qm{flex:0 0 auto;width:26px;height:26px;border-radius:7px;background:var(--blue-pale);color:var(--blue-deep);display:flex;align-items:center;justify-content:center;font-family:"Zen Maru Gothic";font-weight:700;font-size:.9rem}
+.faq-q .arw{margin-left:auto;flex:0 0 auto;transition:.3s;color:var(--blue)}
+.faq-q .arw svg{width:18px;height:18px}
+.faq-item.open .arw{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a-inner{padding:0 24px 22px 64px;color:var(--text-mid);font-size:.88rem;line-height:1.95}
+
+/* contact */
+.contact{background:var(--navy);color:#fff}
+.contact .sec-title{color:#fff}
+.contact .sec-en{color:var(--blue-pale)}
+.contact-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:44px 36px;max-width:760px;margin:0 auto;text-align:center}
+.contact-card .lead{color:#D5DBE6;font-size:.95rem;margin-bottom:28px}
+.tel-big{font-family:"Shippori Mincho",serif;font-size:2.6rem;font-weight:700;letter-spacing:.02em;display:inline-flex;align-items:center;gap:14px;color:#fff}
+.tel-big svg{width:34px;height:34px;stroke:var(--blue-pale)}
+.tel-meta{color:#AEB7C9;font-size:.82rem;margin-top:8px}
+.contact-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.contact-actions .btn-primary{background:var(--blue-pale);color:var(--navy)}
+.contact-actions .btn-line{background:#06C755;color:#fff;display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:50px;font-weight:700;box-shadow:0 14px 30px rgba(6,199,85,.3)}
+.contact-actions .btn-line svg{width:20px;height:20px}
+
+/* footer */
+.footer{background:#2C3450;color:#C8CFDD;padding:54px 0 30px}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start}
+.footer .brand-name{color:#fff}
+.footer-info{font-size:.82rem;line-height:2;color:#AEB7C9}
+.footer-info b{color:#fff;font-weight:700}
+.footer-nav{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:flex-end}
+.footer-nav a{font-size:.82rem;color:#AEB7C9;transition:.2s}
+.footer-nav a:hover{color:#fff}
+.copy{text-align:center;margin-top:42px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);font-size:.74rem;color:#8B93A6;letter-spacing:.05em}
+
+/* sticky mobile cta */
+.mobile-cta{display:none}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:.7s cubic-bezier(.2,.7,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+
+/* ===== responsive ===== */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .hero h1{font-size:2.1rem}
+  .badges{grid-template-columns:repeat(2,1fr)}
+  .points,.flow-steps,.col-grid{grid-template-columns:repeat(2,1fr)}
+  .plans{grid-template-columns:1fr;max-width:420px}
+  .area-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;gap:26px}
+  .footer-nav{justify-content:flex-start}
+}
+@media(max-width:768px){
+  .nav{position:fixed;inset:0 0 0 auto;width:78%;max-width:320px;background:#fff;flex-direction:column;align-items:flex-start;justify-content:center;gap:22px;padding:40px;transform:translateX(100%);transition:.35s;box-shadow:-10px 0 40px rgba(0,0,0,.1)}
+  .nav.open{transform:none}
+  .nav a{font-size:1rem}
+  .nav-toggle{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;z-index:101;padding:6px}
+  .nav-toggle span{width:24px;height:2px;background:var(--navy);transition:.3s;border-radius:2px}
+  .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle.open span:nth-child(2){opacity:0}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .header-cta{display:none}
+  .mobile-cta{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:90;background:rgba(251,249,245,.96);backdrop-filter:blur(8px);padding:10px 14px;gap:10px;box-shadow:0 -4px 20px rgba(56,66,95,.1)}
+  .mobile-cta a{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:13px;border-radius:40px;font-weight:700;font-size:.9rem}
+  .mobile-cta .m-tel{background:var(--blue);color:#fff}
+  .mobile-cta .m-line{background:#06C755;color:#fff}
+  .mobile-cta svg{width:17px;height:17px}
+  body{padding-bottom:64px}
+  section{padding:64px 0}
+  .sec-title{font-size:1.6rem}
+  .message .big{font-size:1.55rem}
+  .tel-big{font-size:2rem}
+}
+@media(max-width:480px){
+  .wrap{padding:0 18px}
+  .hero h1{font-size:1.75rem}
+  .badges{grid-template-columns:repeat(2,1fr);gap:10px}
+  .points,.flow-steps,.col-grid{grid-template-columns:1fr}
+  .feat-list{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header" id="header">
+  <div class="brand">
+    <div class="brand-logo">LOGO<br>仮</div>
+    <div class="brand-name">memorial cooler<span>ever cool</span></div>
+  </div>
+  <nav class="nav" id="nav">
+    <a href="#message">想い</a>
+    <a href="#features">特徴</a>
+    <a href="#compare">比較</a>
+    <a href="#price">料金</a>
+    <a href="#flow">ご利用の流れ</a>
+    <a href="#faq">よくある質問</a>
+    <a href="#contact" class="header-cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.29 21 3 13.71 3 4.5c0-.55.45-1 1-1H7.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.23 1.01L6.6 10.8z"/></svg>
+      お問い合わせ
+    </a>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="メニュー"><span></span><span></span><span></span></button>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="hero-eyebrow">ペットのための安置サポート</span>
+      <h1>お別れを急がず<br>昨日のままの姿で<br><b>最期の時間を少しでも長く</b></h1>
+      <p class="hero-lead">人間用の安置技術を応用した冷却システムで、ドライアイスのように霜をつけることなく、生きていた時と変わらない柔らかな質感を旅立ちの時まで美しく守り続けます。</p>
+      <p class="hero-brand-tag">ever cool ─ memorial cooler</p>
+      <div class="hero-cta-row">
+        <a href="#contact" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.29 21 3 13.71 3 4.5c0-.55.45-1 1-1H7.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.23 1.01L6.6 10.8z"/></svg>
+          まずはご相談ください
+        </a>
+        <a href="#price" class="btn-ghost">料金を見る
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="ph"><div>メインビジュアル（イラスト）<small>※写真・イラストはブランク</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BADGES ===== -->
+<div class="wrap">
+  <div class="badges reveal">
+    <div class="badge">
+      <div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M8 7l4-4 4 4M5 13a7 7 0 0014 0"/></svg></div>
+      <b>−10℃</b><span>安定冷却</span>
+    </div>
+    <div class="badge">
+      <div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0113 0"/></svg></div>
+      <b>葬祭専門スタッフ</b><span>が設置</span>
+    </div>
+    <div class="badge">
+      <div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9h16M8 3v4M16 3v4"/></svg></div>
+      <b>最長20日間</b><span>安置</span>
+    </div>
+    <div class="badge">
+      <div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="14" height="11" rx="1.5"/><path d="M15 9h4l3 3v5h-7M5.5 20a2 2 0 100-4 2 2 0 000 4zM18 20a2 2 0 100-4 2 2 0 000 4z"/></svg></div>
+      <b>最短当日</b><span>配送</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MESSAGE ===== -->
+<section class="message" id="message">
+  <div class="wrap reveal">
+    <p class="big mincho">凍らせないから、<b>変わらない。</b></p>
+    <p>−10℃の特殊冷却で、ご遺体を凍結させることなく安置。硬直や変化を抑え、生前のやわらかな姿を保ちます。ご葬儀までゆっくりと気持ちの準備をして、心ゆくまで最後のお別れを。ご自宅での安置を、手軽に・安心してサポートします。</p>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-en">Features</span>
+      <h2 class="sec-title">メモリアルクーラーの機能</h2>
+    </div>
+    <div class="feat-list reveal">
+      <div class="feat-item"><div class="ck"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><p>最短当日お届け・24時間受付</p></div>
+      <div class="feat-item"><div class="ck"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><p>葬祭専門スタッフが設置・ご葬儀相談対応可</p></div>
+      <div class="feat-item"><div class="ck"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><p>生前のお姿をできるだけ保ちながら安定保冷</p></div>
+      <div class="feat-item"><div class="ck"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><p>小さな子から大型の子まで幅広く対応</p></div>
+    </div>
+
+    <div class="sec-head reveal" style="margin-bottom:40px">
+      <h3 class="sec-title sm">安心の<span style="color:var(--blue-deep)">4つ</span>のポイント</h3>
+    </div>
+    <div class="points reveal">
+      <div class="point">
+        <div class="ph"><div>写真<small>※ブランク</small></div></div>
+        <div class="point-body"><span class="point-no">POINT 1</span><h3>専用保冷板による安定冷却</h3><p>−10℃の専用保冷板で安定した冷却環境を保ち、小さなペットから大型犬まで幅広くご安置をサポートします。</p></div>
+      </div>
+      <div class="point">
+        <div class="ph"><div>写真<small>※ブランク</small></div></div>
+        <div class="point-body"><span class="point-no">POINT 2</span><h3>葬祭専門スタッフが設置対応</h3><p>経験豊富な葬祭専門スタッフが設置から丁寧に対応。ご希望に応じて、ご葬儀やご火葬もお手伝いいたします。</p></div>
+      </div>
+      <div class="point">
+        <div class="ph"><div>写真<small>※ブランク</small></div></div>
+        <div class="point-body"><span class="point-no">POINT 3</span><h3>最長20日間のご安置が可能</h3><p>生前の穏やかな姿をできるだけ保ちながら、ご自宅でご家族様のペースに合わせてゆっくりお別れいただけます。</p></div>
+      </div>
+      <div class="point">
+        <div class="ph"><div>写真<small>※ブランク</small></div></div>
+        <div class="point-body"><span class="point-no">POINT 4</span><h3>最短当日にご自宅へお届け</h3><p>突然のお別れにも迅速に対応し、最短当日にお届けいたします。ご家族に寄り添い、丁寧にサポートいたします。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPARE ===== -->
+<section class="compare" id="compare">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-en">Comparison</span>
+      <h2 class="sec-title">他の安置方法との比較</h2>
+    </div>
+    <div class="tbl-scroll reveal">
+      <table class="compare-tbl">
+        <thead><tr><th></th><th class="hl">メモリアルクーラー</th><th>ドライアイス</th><th>保冷剤</th></tr></thead>
+        <tbody>
+          <tr><th>安置環境</th><td class="col-mc"><span class="mk o">◎</span>専用冷却装置で安定した温度管理</td><td><span class="mk t">△</span>一日で気化。定期的な換気が必要</td><td><span class="mk x">×</span>効果時間が短い</td></tr>
+          <tr><th>安置期間</th><td class="col-mc"><span class="mk o">◎</span>状態に合わせて利用可能。最長20日間</td><td><span class="mk t">△</span>2〜3日程度</td><td><span class="mk x">×</span>1〜2日・頻繁な交換が必要</td></tr>
+          <tr><th>お身体への影響</th><td class="col-mc"><span class="mk o">◎</span>−10℃の安定冷却でお身体を傷めない</td><td><span class="mk x">×</span>−78℃で凍結し傷つくおそれ</td><td><span class="mk x">×</span>すぐ溶け、短時間向き</td></tr>
+          <tr><th>ご家族の負担</th><td class="col-mc"><span class="mk o">◎</span>交換の手間がない</td><td><span class="mk t">△</span>一日ごとに交換が必要</td><td><span class="mk x">×</span>1〜2時間ごとの交換が必要</td></tr>
+          <tr><th>設置場所</th><td class="col-mc"><span class="mk o">◎</span>ご自宅で設置可能</td><td><span class="mk t">○</span>自宅利用可能</td><td><span class="mk t">○</span>自宅利用可能</td></tr>
+          <tr><th>葬儀会社</th><td class="col-mc"><span class="mk o">◎</span>他社で火葬予定でも利用可能</td><td><span class="mk t">△</span>訪問日時の調整が必要</td><td><span class="mk x">×</span>長期安置には不向き</td></tr>
+          <tr><th>利用目的</th><td class="col-mc"><span class="mk o">◎</span>最後のお別れの時間を整える</td><td><span class="mk t">○</span>一時的な冷却</td><td><span class="mk t">△</span>短時間の補助</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICE ===== -->
+<section id="price">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-en">Price</span>
+      <h2 class="sec-title">料金プラン</h2>
+      <p class="sec-lead">ご自宅での安置を、手軽に・安心してサポートします。</p>
+    </div>
+    <div class="plans reveal">
+      <div class="plan">
+        <h3>3日間パック</h3>
+        <div class="price"><small>¥</small>16,500<small>〜</small></div>
+        <div class="per"><b>1日あたり 5,500円〜</b></div>
+      </div>
+      <div class="plan pop">
+        <span class="plan-tag">おすすめ</span>
+        <h3>5日間パック</h3>
+        <div class="price"><small>¥</small>29,800<small>〜</small></div>
+        <div class="per"><b>1日あたり 5,960円〜</b></div>
+      </div>
+      <div class="plan">
+        <h3>7日間パック</h3>
+        <div class="price"><small>¥</small>39,800<small>〜</small></div>
+        <div class="per"><b>1日あたり 5,686円〜</b></div>
+      </div>
+    </div>
+    <ul class="price-notes reveal">
+      <li>表示はすべて税込価格です。延長は1日ごと5,500円になります。</li>
+      <li>別途、配達料を申し受けます（地域により異なります。詳しくはお問い合わせください）。</li>
+      <li>ご葬儀を一緒にご依頼いただいた場合の割引もご用意しております。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== FLOW ===== -->
+<section class="flow" id="flow">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-en">Flow</span>
+      <h2 class="sec-title">ご利用の流れ</h2>
+    </div>
+    <div class="flow-steps reveal">
+      <div class="step"><span class="step-no">STEP 01</span>
+        <div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.29 21 3 13.71 3 4.5c0-.55.45-1 1-1H7.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.23 1.01L6.6 10.8z"/></svg></div>
+        <h3>ご相談</h3><p>LINE・お電話でお気軽にご相談ください。</p></div>
+      <div class="step"><span class="step-no">STEP 02</span>
+        <div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="14" height="11" rx="1.5"/><path d="M15 9h4l3 3v5h-7M5.5 20a2 2 0 100-4 2 2 0 000 4zM18 20a2 2 0 100-4 2 2 0 000 4z"/></svg></div>
+        <h3>お届け</h3><p>最短当日にご自宅へお届けします。</p></div>
+      <div class="step"><span class="step-no">STEP 03</span>
+        <div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0113 0"/></svg></div>
+        <h3>設置</h3><p>葬祭専門スタッフが設置に伺います。</p></div>
+      <div class="step"><span class="step-no">STEP 04</span>
+        <div class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7M21 4v5h-5"/></svg></div>
+        <h3>返却・回収</h3><p>ご返却の際に回収に伺います。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 提携先動物病院（placeholder） ===== -->
+<section class="ph-sec" id="partners">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-en">Partners</span>
+      <h2 class="sec-title">提携先動物病院</h2>
+      <p class="sec-lead">※内容が届き次第、こちらに掲載します。</p>
+    </div>
+    <div class="ph reveal"><div>提携先動物病院ロゴ・一覧<small>※情報到着後に差し込み</small></div></div>
+  </div>
+</section>
+
+<!-- ===== 対応エリア ===== -->
+<section class="flow" id="area">
+  <div class="wrap area-grid">
+    <div class="reveal">
+      <span class="sec-en">Area</span>
+      <h2 class="sec-title" style="text-align:left">対応エリア</h2>
+      <p class="sec-lead" style="text-align:left">突然のお別れにも、できる限り迅速に対応いたします。対応エリア外につきましても、今後順次拡大予定です。</p>
+      <div class="area-list">
+        <span>東京</span><span>神奈川</span><span>千葉</span><span>埼玉</span>
+      </div>
+      <p class="area-note">※対応エリアは状況により異なる場合があります。詳しくはお問い合わせください。</p>
+    </div>
+    <div class="reveal"><div class="ph" style="min-height:240px"><div>対応エリアマップ（イラスト）<small>※写真・イラストはブランク</small></div></div></div>
+  </div>
+</section>
+
+<!-- ===== Google口コミ（placeholder） ===== -->
+<section class="ph-sec" id="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-en">Reviews</span>
+      <h2 class="sec-title">お客様の声（Googleクチコミ）</h2>
+      <p class="sec-lead">※クチコミ内容が届き次第、こちらに掲載します。</p>
+    </div>
+    <div class="col-grid reveal">
+      <div class="ph"><div>Googleクチコミ<small>※掲載枠</small></div></div>
+      <div class="ph"><div>Googleクチコミ<small>※掲載枠</small></div></div>
+      <div class="ph"><div>Googleクチコミ<small>※掲載枠</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Instagram（placeholder） ===== -->
+<section id="instagram">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-en">Instagram</span>
+      <h2 class="sec-title">Instagram</h2>
+      <p class="sec-lead">※アカウント情報・埋め込みが届き次第、こちらに掲載します。</p>
+    </div>
+    <div class="col-grid reveal" style="grid-template-columns:repeat(4,1fr)">
+      <div class="ph" style="min-height:160px"><div>投稿<small>※埋め込み枠</small></div></div>
+      <div class="ph" style="min-height:160px"><div>投稿<small>※埋め込み枠</small></div></div>
+      <div class="ph" style="min-height:160px"><div>投稿<small>※埋め込み枠</small></div></div>
+      <div class="ph" style="min-height:160px"><div>投稿<small>※埋め込み枠</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COLUMN ===== -->
+<section class="compare" id="column">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-en">Column</span>
+      <h2 class="sec-title">コラム・メディア掲載</h2>
+    </div>
+    <div class="col-grid reveal">
+      <a class="col-card" href="https://paws-memory.jp/column/480" target="_blank" rel="noopener">
+        <div class="ph"><div>サムネイル<small>※ブランク</small></div></div>
+        <div class="col-body"><span class="col-tag">MEDIA</span><h3>阿部美奈子先生（『犬と私の交換日記』著者）との対談記事掲載【雑誌「RETRIEVER」4月号】</h3><span class="col-more">記事を読む<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+      <a class="col-card" href="https://paws-memory.jp/column/492" target="_blank" rel="noopener">
+        <div class="ph"><div>サムネイル<small>※ブランク</small></div></div>
+        <div class="col-body"><span class="col-tag">COLUMN</span><h3>阿部美奈子先生（『犬と私の交換日記』著者）との対談記事</h3><span class="col-more">記事を読む<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+      <a class="col-card" href="https://paws-memory.jp/column/158" target="_blank" rel="noopener">
+        <div class="ph"><div>サムネイル<small>※ブランク</small></div></div>
+        <div class="col-body"><span class="col-tag">NEWS</span><h3>PAWS MEMORY提供ラジオ番組がinterfmにて放送開始！</h3><span class="col-more">記事を読む<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-en">FAQ</span>
+      <h2 class="sec-title">よくある質問</h2>
+    </div>
+    <div class="faq-wrap reveal" id="faqWrap">
+      <!-- items injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-en">Contact</span>
+      <h2 class="sec-title">お問い合わせ</h2>
+    </div>
+    <div class="contact-card reveal">
+      <p class="lead">大切なペットちゃんとのお別れについて、まずはお気軽にご相談ください。<br>ご相談だけでも承っております。</p>
+      <a href="tel:0120835131" class="tel-big">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.29 21 3 13.71 3 4.5c0-.55.45-1 1-1H7.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.23 1.01L6.6 10.8z"/></svg>
+        0120-835-131
+      </a>
+      <p class="tel-meta">24時間受付</p>
+      <div class="contact-actions">
+        <a href="tel:0120835131" class="btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.29 21 3 13.71 3 4.5c0-.55.45-1 1-1H7.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.23 1.01L6.6 10.8z"/></svg>電話で相談する</a>
+        <a href="#" class="btn-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 5.7 2 10.2c0 4 3.6 7.4 8.4 8 .3.07.8.2.9.5.1.27.07.7.03.97l-.14.9c-.04.27-.2 1.06.93.58 1.13-.48 6.1-3.6 8.32-6.16C21.9 13.3 22 11.8 22 10.2 22 5.7 17.5 2 12 2z"/></svg>LINEで相談する</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <div class="brand" style="margin-bottom:18px">
+        <div class="brand-logo">LOGO<br>仮</div>
+        <div class="brand-name">memorial cooler<span>ever cool</span></div>
+      </div>
+      <p class="footer-info">
+        <b>株式会社 THE DOG COMPANY</b><br>
+        〒140-0002 東京都品川区東品川4-12-6<br>
+        品川シーサイドキャナルタワー 19F<br>
+        TEL：0120-835-131（24時間受付）
+      </p>
+    </div>
+    <nav class="footer-nav">
+      <a href="#message">想い</a>
+      <a href="#features">特徴</a>
+      <a href="#compare">比較</a>
+      <a href="#price">料金</a>
+      <a href="#flow">ご利用の流れ</a>
+      <a href="#area">対応エリア</a>
+      <a href="#column">コラム</a>
+      <a href="#faq">よくある質問</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+  <p class="copy">© ever cool / 株式会社 THE DOG COMPANY</p>
+</footer>
+
+<!-- ===== mobile sticky cta ===== -->
+<div class="mobile-cta">
+  <a href="tel:0120835131" class="m-tel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.29 21 3 13.71 3 4.5c0-.55.45-1 1-1H7.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.23 1.01L6.6 10.8z"/></svg>電話相談</a>
+  <a href="#" class="m-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 5.7 2 10.2c0 4 3.6 7.4 8.4 8 .3.07.8.2.9.5.1.27.07.7.03.97l-.14.9c-.04.27-.2 1.06.93.58 1.13-.48 6.1-3.6 8.32-6.16C21.9 13.3 22 11.8 22 10.2 22 5.7 17.5 2 12 2z"/></svg>LINE相談</a>
+</div>
+
+<script>
+// header scroll
+const header=document.getElementById('header');
+addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40));
+// nav toggle
+const nt=document.getElementById('navToggle'),nav=document.getElementById('nav');
+nt.addEventListener('click',()=>{nt.classList.toggle('open');nav.classList.toggle('open')});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nt.classList.remove('open');nav.classList.remove('open')}));
+// reveal
+const ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>ob.observe(el));
+// FAQ data
+const faqs=[
+ ["メモリアルクーラーとは何ですか？","大切なペットちゃんをご自宅で安置するための専用冷却装置です。火葬までのお時間をご家族様とゆっくり過ごしたい場合や、ご家族が揃うまでお別れの時間を大切にしたい場合にご利用いただけます。専用の冷却システムにより、お身体の状態変化を抑えながら、安置環境を整えます。"],
+ ["腐敗を防ぐことができますか？","メモリアルクーラーは腐敗を完全に止めるものではありません。温度環境を整えることで、お身体の変化の進行を抑えることを目的としています。季節や室温環境によっては、エアコンなどを併用し、適切な環境づくりをお願いしております。"],
+ ["どのくらいの期間利用できますか？","ペットちゃんの種類・体格・お身体の状態・室内環境によって異なります。適切な環境で管理することで、最長20日程度の安置を想定しております。※状態によって異なるため、必ずしも同期間を保証するものではありません。"],
+ ["夏場でも利用できますか？","はい、ご利用いただけます。ただし外気温や室温の影響を受けるため、夏場はエアコンなどを併用し、室温を適切に保っていただくことをおすすめしております。"],
+ ["亡くなった直後から利用できますか？","はい、ご利用いただけます。できるだけ早く適切な安置環境を整えることが大切です。"],
+ ["ドライアイスとの違いは何ですか？","ドライアイスは約−79℃で直接冷却するため、使用方法によっては冷えすぎによる影響や交換の手間があります。メモリアルクーラーは専用装置によって安定した冷却環境を作り、ペットちゃんのお身体やご家族様の負担軽減を目指したサービスです。"],
+ ["どんなペットが利用できますか？","犬・猫を中心にご利用いただいておりますが、その他のペットにも対応しております。小さな子から大きな子まで、サイズを問わずご利用いただけます。"],
+ ["大型犬でも利用できますか？","はい、ご利用いただけます。大型犬の場合、身体が大きい分、温度管理の重要性が高くなります。メモリアルクーラーはペットちゃんの大きさに合わせた安置環境を整えることで、大型犬のご利用にも適しております。"],
+ ["急ぎで利用できますか？","地域や在庫状況によりますが、可能な限り迅速に対応しております。まずはお問い合わせください。"],
+ ["身体の変化を防ぐことはできますか？","お身体の変化を完全に止めるものではありません。特に夏場など気温が高い時期は変化が進みやすいため、できるだけ早く冷却環境を整えることが大切です。安定した冷却環境を作り、できるだけ良い状態でお別れの時間を過ごしていただくためのサービスです。"],
+ ["オプションサービスはありますか？","はい、ご用意しております。ご火葬前にペットちゃんの毛を納める遺毛ケース、安置祭壇兼お骨飾り祭壇、キャンドル、お参りセット、メモリアルフォトフレームなど、ご家族様のお別れの時間を大切にするための商品をご用意しております。"],
+ ["葬儀会社がまだ決まっていません。火葬もお願いできますか？","はい、可能です。THE DOG COMPANYでは、ペット葬儀サービスPAWS MEMORY（パウズメモリー）も運営しております。ご自宅でのお見送りから、ご火葬まで一貫してお手伝いしております。もちろん、ご相談だけでも承っております。"],
+ ["すでに他の葬儀会社に依頼していますが利用できますか？","はい、ご利用いただけます。メモリアルクーラーは葬儀会社に関係なくご利用いただける安置サポートサービスです。すでに火葬を依頼されている場合でも、ご自宅でゆっくりお別れするためにご利用いただけます。"],
+ ["自宅のどこに置けばいいですか？","スタッフが適切な場所へ設置いたします。直射日光の当たらない、エアコンで室温管理ができるお部屋をおすすめしております。設置後の移動はなるべくお控えください。"]
+];
+const fw=document.getElementById('faqWrap');
+fw.innerHTML=faqs.map(([q,a])=>`<div class="faq-item"><div class="faq-q"><span class="qm">Q</span><span>${q}</span><span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="faq-a"><div class="faq-a-inner">${a}</div></div></div>`).join('');
+fw.querySelectorAll('.faq-item').forEach(it=>{
+  it.querySelector('.faq-q').addEventListener('click',()=>{
+    const open=it.classList.contains('open');
+    it.classList.toggle('open');
+    const a=it.querySelector('.faq-a');
+    a.style.maxHeight=open?null:a.scrollHeight+'px';
+  });
+});
+</script>
+</body>
+</html>
