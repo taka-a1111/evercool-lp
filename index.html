@@ -254,6 +254,28 @@ section{padding:88px 0}
 .reveal{opacity:0;transform:translateY(24px);transition:.7s cubic-bezier(.2,.7,.3,1)}
 .reveal.visible{opacity:1;transform:none}
 
+/* ===== floral decorations（柔らかいイラスト風の花・静的／動きなし） ===== */
+/* 背景にそっと置く静的な花のアクセント */
+.bloom{position:absolute;pointer-events:none;z-index:0;opacity:.7}
+.bloom svg{width:100%;height:100%;display:block}
+.hero{overflow:hidden}
+.hero .bloom-1{width:90px;height:90px;left:-18px;bottom:40px;opacity:.6}
+.hero .bloom-2{width:60px;height:60px;right:8%;top:120px;opacity:.5}
+.message{position:relative;overflow:hidden}
+.message .bloom-1{width:70px;height:70px;left:4%;bottom:24px;opacity:.45}
+.message .bloom-2{width:54px;height:54px;right:5%;top:30px;opacity:.4}
+#features{position:relative;overflow:hidden}
+#features .bloom-1{width:64px;height:64px;right:2%;top:40px;opacity:.4}
+#features .bloom-2{width:46px;height:46px;left:3%;bottom:30px;opacity:.35}
+.flow{position:relative;overflow:hidden}
+.flow .bloom-1{width:68px;height:68px;left:3%;top:36px;opacity:.4}
+.flow .bloom-2{width:50px;height:50px;right:4%;bottom:30px;opacity:.38}
+.faq{position:relative;overflow:hidden}
+.faq .bloom-1{width:60px;height:60px;right:3%;top:40px;opacity:.4}
+.contact{position:relative;overflow:hidden}
+.contact .bloom-1{width:80px;height:80px;left:3%;bottom:30px;opacity:.18}
+.contact .bloom-2{width:58px;height:58px;right:4%;top:40px;opacity:.16}
+
 /* ===== responsive ===== */
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:34px}
@@ -292,10 +314,12 @@ section{padding:88px 0}
   .badges{grid-template-columns:repeat(2,1fr);gap:10px}
   .points,.flow-steps,.col-grid{grid-template-columns:1fr}
   .feat-list{grid-template-columns:1fr}
+  .bloom{transform:scale(.7)}
 }
 </style>
 </head>
 <body>
+
 
 <!-- ===== HEADER ===== -->
 <header class="site-header" id="header">
@@ -320,6 +344,8 @@ section{padding:88px 0}
 
 <!-- ===== HERO ===== -->
 <section class="hero">
+  <span class="bloom bloom-1" aria-hidden="true"><svg viewBox="0 0 100 100"><g fill="#F2DDD8"><ellipse cx="50" cy="22" rx="12" ry="21"/><ellipse cx="50" cy="78" rx="12" ry="21"/><ellipse cx="22" cy="50" rx="21" ry="12"/><ellipse cx="78" cy="50" rx="21" ry="12"/><ellipse cx="31" cy="31" rx="11" ry="20" transform="rotate(-45 31 31)"/><ellipse cx="69" cy="31" rx="11" ry="20" transform="rotate(45 69 31)"/><ellipse cx="31" cy="69" rx="11" ry="20" transform="rotate(45 31 69)"/><ellipse cx="69" cy="69" rx="11" ry="20" transform="rotate(-45 69 69)"/></g><circle cx="50" cy="50" r="12" fill="#E7C79E"/></svg></span>
+  <span class="bloom bloom-2" aria-hidden="true"><svg viewBox="0 0 100 100"><g fill="#DCEBEE"><ellipse cx="50" cy="24" rx="12" ry="22"/><ellipse cx="50" cy="76" rx="12" ry="22"/><ellipse cx="24" cy="50" rx="22" ry="12"/><ellipse cx="76" cy="50" rx="22" ry="12"/></g><circle cx="50" cy="50" r="11" fill="#AFD9E0"/></svg></span>
   <div class="wrap hero-grid">
     <div>
       <span class="hero-eyebrow">ペットのための安置サポート</span>
@@ -366,6 +392,8 @@ section{padding:88px 0}
 
 <!-- ===== MESSAGE ===== -->
 <section class="message" id="message">
+  <span class="bloom bloom-1" aria-hidden="true"><svg viewBox="0 0 100 100"><g fill="#FFFFFF"><ellipse cx="50" cy="22" rx="12" ry="21"/><ellipse cx="50" cy="78" rx="12" ry="21"/><ellipse cx="22" cy="50" rx="21" ry="12"/><ellipse cx="78" cy="50" rx="21" ry="12"/><ellipse cx="31" cy="31" rx="11" ry="20" transform="rotate(-45 31 31)"/><ellipse cx="69" cy="31" rx="11" ry="20" transform="rotate(45 69 31)"/><ellipse cx="31" cy="69" rx="11" ry="20" transform="rotate(45 31 69)"/><ellipse cx="69" cy="69" rx="11" ry="20" transform="rotate(-45 69 69)"/></g><circle cx="50" cy="50" r="12" fill="#AFD9E0"/></svg></span>
+  <span class="bloom bloom-2" aria-hidden="true"><svg viewBox="0 0 100 100"><g fill="#FFFFFF"><ellipse cx="50" cy="24" rx="12" ry="22"/><ellipse cx="50" cy="76" rx="12" ry="22"/><ellipse cx="24" cy="50" rx="22" ry="12"/><ellipse cx="76" cy="50" rx="22" ry="12"/></g><circle cx="50" cy="50" r="11" fill="#E7C79E"/></svg></span>
   <div class="wrap reveal">
     <p class="big mincho">凍らせないから、<b>変わらない。</b></p>
     <p>−10℃の特殊冷却で、ご遺体を凍結させることなく安置。硬直や変化を抑え、生前のやわらかな姿を保ちます。ご葬儀までゆっくりと気持ちの準備をして、心ゆくまで最後のお別れを。ご自宅での安置を、手軽に・安心してサポートします。</p>
@@ -374,6 +402,8 @@ section{padding:88px 0}
 
 <!-- ===== FEATURES ===== -->
 <section id="features">
+  <span class="bloom bloom-1" aria-hidden="true"><svg viewBox="0 0 100 100"><g fill="#EAF0E8"><ellipse cx="50" cy="22" rx="12" ry="21"/><ellipse cx="50" cy="78" rx="12" ry="21"/><ellipse cx="22" cy="50" rx="21" ry="12"/><ellipse cx="78" cy="50" rx="21" ry="12"/><ellipse cx="31" cy="31" rx="11" ry="20" transform="rotate(-45 31 31)"/><ellipse cx="69" cy="31" rx="11" ry="20" transform="rotate(45 69 31)"/><ellipse cx="31" cy="69" rx="11" ry="20" transform="rotate(45 31 69)"/><ellipse cx="69" cy="69" rx="11" ry="20" transform="rotate(-45 69 69)"/></g><circle cx="50" cy="50" r="12" fill="#D5BDB3"/></svg></span>
+  <span class="bloom bloom-2" aria-hidden="true"><svg viewBox="0 0 100 100"><g fill="#F2DDD8"><ellipse cx="50" cy="24" rx="12" ry="22"/><ellipse cx="50" cy="76" rx="12" ry="22"/><ellipse cx="24" cy="50" rx="22" ry="12"/><ellipse cx="76" cy="50" rx="22" ry="12"/></g><circle cx="50" cy="50" r="11" fill="#E7C79E"/></svg></span>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-en">Features</span>
@@ -440,7 +470,7 @@ section{padding:88px 0}
     <div class="sec-head reveal">
       <span class="sec-en">Price</span>
       <h2 class="sec-title">料金プラン</h2>
-      <p class="sec-lead">ご自宅での安置を、手軽に・安心してサポートします。</p>
+      <p class="sec-lead">1日あたり一律5,500円（税込）。ご自宅での安置を、手軽に・安心してサポートします。</p>
     </div>
     <div class="plans reveal">
       <div class="plan">
@@ -451,13 +481,13 @@ section{padding:88px 0}
       <div class="plan pop">
         <span class="plan-tag">おすすめ</span>
         <h3>5日間パック</h3>
-        <div class="price"><small>¥</small>29,800<small>〜</small></div>
-        <div class="per"><b>1日あたり 5,960円〜</b></div>
+        <div class="price"><small>¥</small>27,500<small>〜</small></div>
+        <div class="per"><b>1日あたり 5,500円〜</b></div>
       </div>
       <div class="plan">
         <h3>7日間パック</h3>
-        <div class="price"><small>¥</small>39,800<small>〜</small></div>
-        <div class="per"><b>1日あたり 5,686円〜</b></div>
+        <div class="price"><small>¥</small>38,500<small>〜</small></div>
+        <div class="per"><b>1日あたり 5,500円〜</b></div>
       </div>
     </div>
     <ul class="price-notes reveal">
@@ -470,6 +500,8 @@ section{padding:88px 0}
 
 <!-- ===== FLOW ===== -->
 <section class="flow" id="flow">
+  <span class="bloom bloom-1" aria-hidden="true"><svg viewBox="0 0 100 100"><g fill="#FFFFFF"><ellipse cx="50" cy="22" rx="12" ry="21"/><ellipse cx="50" cy="78" rx="12" ry="21"/><ellipse cx="22" cy="50" rx="21" ry="12"/><ellipse cx="78" cy="50" rx="21" ry="12"/><ellipse cx="31" cy="31" rx="11" ry="20" transform="rotate(-45 31 31)"/><ellipse cx="69" cy="31" rx="11" ry="20" transform="rotate(45 69 31)"/><ellipse cx="31" cy="69" rx="11" ry="20" transform="rotate(45 31 69)"/><ellipse cx="69" cy="69" rx="11" ry="20" transform="rotate(-45 69 69)"/></g><circle cx="50" cy="50" r="12" fill="#E7C79E"/></svg></span>
+  <span class="bloom bloom-2" aria-hidden="true"><svg viewBox="0 0 100 100"><g fill="#FFFFFF"><ellipse cx="50" cy="24" rx="12" ry="22"/><ellipse cx="50" cy="76" rx="12" ry="22"/><ellipse cx="24" cy="50" rx="22" ry="12"/><ellipse cx="76" cy="50" rx="22" ry="12"/></g><circle cx="50" cy="50" r="11" fill="#AFD9E0"/></svg></span>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-en">Flow</span>
@@ -579,6 +611,7 @@ section{padding:88px 0}
 
 <!-- ===== FAQ ===== -->
 <section class="faq" id="faq">
+  <span class="bloom bloom-1" aria-hidden="true"><svg viewBox="0 0 100 100"><g fill="#FFFFFF"><ellipse cx="50" cy="22" rx="12" ry="21"/><ellipse cx="50" cy="78" rx="12" ry="21"/><ellipse cx="22" cy="50" rx="21" ry="12"/><ellipse cx="78" cy="50" rx="21" ry="12"/><ellipse cx="31" cy="31" rx="11" ry="20" transform="rotate(-45 31 31)"/><ellipse cx="69" cy="31" rx="11" ry="20" transform="rotate(45 69 31)"/><ellipse cx="31" cy="69" rx="11" ry="20" transform="rotate(45 31 69)"/><ellipse cx="69" cy="69" rx="11" ry="20" transform="rotate(-45 69 69)"/></g><circle cx="50" cy="50" r="12" fill="#D5BDB3"/></svg></span>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-en">FAQ</span>
@@ -592,6 +625,8 @@ section{padding:88px 0}
 
 <!-- ===== CONTACT ===== -->
 <section class="contact" id="contact">
+  <span class="bloom bloom-1" aria-hidden="true"><svg viewBox="0 0 100 100"><g fill="#FFFFFF"><ellipse cx="50" cy="22" rx="12" ry="21"/><ellipse cx="50" cy="78" rx="12" ry="21"/><ellipse cx="22" cy="50" rx="21" ry="12"/><ellipse cx="78" cy="50" rx="21" ry="12"/><ellipse cx="31" cy="31" rx="11" ry="20" transform="rotate(-45 31 31)"/><ellipse cx="69" cy="31" rx="11" ry="20" transform="rotate(45 69 31)"/><ellipse cx="31" cy="69" rx="11" ry="20" transform="rotate(45 31 69)"/><ellipse cx="69" cy="69" rx="11" ry="20" transform="rotate(-45 69 69)"/></g><circle cx="50" cy="50" r="12" fill="#AFD9E0"/></svg></span>
+  <span class="bloom bloom-2" aria-hidden="true"><svg viewBox="0 0 100 100"><g fill="#FFFFFF"><ellipse cx="50" cy="24" rx="12" ry="22"/><ellipse cx="50" cy="76" rx="12" ry="22"/><ellipse cx="24" cy="50" rx="22" ry="12"/><ellipse cx="76" cy="50" rx="22" ry="12"/></g><circle cx="50" cy="50" r="11" fill="#AFD9E0"/></svg></span>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-en">Contact</span>
