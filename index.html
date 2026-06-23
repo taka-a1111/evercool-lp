@@ -276,6 +276,14 @@ section{padding:88px 0}
 .contact .bloom-1{width:80px;height:80px;left:3%;bottom:30px;opacity:.18}
 .contact .bloom-2{width:58px;height:58px;right:4%;top:40px;opacity:.16}
 
+/* スクロールで少しの間ついてくる追従アイコン */
+.follow-deco{position:fixed;z-index:3;pointer-events:none;opacity:.5;will-change:transform}
+.follow-deco svg{width:100%;height:100%;display:block}
+.follow-deco.fd-1{right:22px;top:40%;width:52px;height:52px}
+.follow-deco.fd-2{left:20px;top:62%;width:40px;height:40px;opacity:.42}
+@media(prefers-reduced-motion:reduce){.follow-deco{transform:none!important}}
+@media(max-width:768px){.follow-deco{display:none}}
+
 /* ===== responsive ===== */
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:34px}
@@ -320,6 +328,9 @@ section{padding:88px 0}
 </head>
 <body>
 
+<!-- ===== スクロール追従アイコン（簡易・少しの間ついてくる） ===== -->
+<span class="follow-deco fd-1" aria-hidden="true"><svg viewBox="0 0 100 100"><g fill="#F2DDD8"><ellipse cx="50" cy="22" rx="12" ry="21"/><ellipse cx="50" cy="78" rx="12" ry="21"/><ellipse cx="22" cy="50" rx="21" ry="12"/><ellipse cx="78" cy="50" rx="21" ry="12"/><ellipse cx="31" cy="31" rx="11" ry="20" transform="rotate(-45 31 31)"/><ellipse cx="69" cy="31" rx="11" ry="20" transform="rotate(45 69 31)"/><ellipse cx="31" cy="69" rx="11" ry="20" transform="rotate(45 31 69)"/><ellipse cx="69" cy="69" rx="11" ry="20" transform="rotate(-45 69 69)"/></g><circle cx="50" cy="50" r="12" fill="#E7C79E"/></svg></span>
+<span class="follow-deco fd-2" aria-hidden="true"><svg viewBox="0 0 100 100"><g fill="#DCEBEE"><ellipse cx="50" cy="24" rx="12" ry="22"/><ellipse cx="50" cy="76" rx="12" ry="22"/><ellipse cx="24" cy="50" rx="22" ry="12"/><ellipse cx="76" cy="50" rx="22" ry="12"/></g><circle cx="50" cy="50" r="11" fill="#AFD9E0"/></svg></span>
 
 <!-- ===== HEADER ===== -->
 <header class="site-header" id="header">
@@ -694,6 +705,28 @@ nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nt.classLis
 // reveal
 const ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>ob.observe(el));
+// scroll-following deco（少しの間ついてくる→止まると戻る）
+(function(){
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const els=[...document.querySelectorAll('.follow-deco')];
+  if(reduce||!els.length)return;
+  let lastY=scrollY, target=0;
+  const state=els.map((el,i)=>({el,off:0,rot:0,f:i===0?1:0.7}));
+  addEventListener('scroll',()=>{
+    const y=scrollY; target+=(y-lastY); lastY=y;
+    target=Math.max(-90,Math.min(90,target));
+  },{passive:true});
+  (function tick(){
+    target*=0.88;
+    state.forEach(s=>{
+      const t=target*s.f;
+      s.off+=(t-s.off)*0.12;
+      s.rot+=((t*0.3)-s.rot)*0.12;
+      s.el.style.transform='translateY('+s.off.toFixed(2)+'px) rotate('+s.rot.toFixed(2)+'deg)';
+    });
+    requestAnimationFrame(tick);
+  })();
+})();
 // FAQ data
 const faqs=[
  ["メモリアルクーラーとは何ですか？","大切なペットちゃんをご自宅で安置するための専用冷却装置です。火葬までのお時間をご家族様とゆっくり過ごしたい場合や、ご家族が揃うまでお別れの時間を大切にしたい場合にご利用いただけます。専用の冷却システムにより、お身体の状態変化を抑えながら、安置環境を整えます。"],
