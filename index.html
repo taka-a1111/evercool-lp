@@ -198,9 +198,16 @@ section{position:relative;overflow:hidden}
 .map-frame{position:relative;border-radius:20px;overflow:hidden;border:3px solid var(--teal);
   box-shadow:0 18px 40px rgba(38,87,150,.14)}
 #areaMap{width:100%;height:340px;background:#e9edf0}
-.pref-label{font-family:var(--mincho);font-weight:700;color:var(--navy);font-size:14px;
-  letter-spacing:.08em;white-space:nowrap;transform:translate(-50%,-50%);
-  text-shadow:0 0 4px #fff,0 0 8px #fff,0 0 12px #fff;pointer-events:none}
+.g-label{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+  white-space:nowrap;pointer-events:none;
+  text-shadow:0 0 3px #fff,0 0 5px #fff,1px 1px 2px #fff,-1px -1px 2px #fff}
+.g-pref{color:#8d959e;font-size:13px;font-weight:500;transform:translate(-50%,-50%)}
+.g-city{color:#33383d;font-size:12.5px;font-weight:500;display:flex;align-items:center;gap:4px;
+  transform:translate(-5px,-50%)}
+.g-city .dot{width:7px;height:7px;border:1.6px solid #5f6368;background:#fff;border-radius:50%;
+  box-shadow:0 0 2px #fff;flex:0 0 auto}
+.g-city.big{font-size:15.5px;font-weight:700;color:#202124}
+.g-city.big .dot{background:#202124;border-color:#202124;width:8px;height:8px}
 #areaMap .leaflet-tile-pane{filter:grayscale(1) contrast(.92) brightness(1.04)}
 .leaflet-container{font-family:var(--gothic)}
 .map-cap{position:absolute;left:16px;bottom:14px;z-index:3;background:rgba(38,87,150,.9);color:#fff;
@@ -815,8 +822,10 @@ fw.querySelectorAll('.faq-item').forEach(it=>{
     subdomains:'abcd',maxZoom:12,minZoom:7
   }).addTo(map);
   const layer=L.geoJSON(AREA_GJ,{style:{color:'#3B8A8D',weight:2.5,fillColor:'#4AA9AC',fillOpacity:.22,lineJoin:'round'}}).addTo(map);
-  const LBL=[['埼玉',36.02,139.35],['東京',35.70,139.42],['神奈川',35.42,139.32],['千葉',35.52,140.22]];
-  LBL.forEach(([n,la,ln])=>L.marker([la,ln],{interactive:false,icon:L.divIcon({className:'pref-label',html:n,iconSize:null})}).addTo(map));
+  const PREF=[['埼玉県',36.06,139.28],['東京都',35.735,139.18],['神奈川県',35.405,139.28],['千葉県',35.42,140.22],['山梨県',35.62,138.72],['茨城県',36.18,140.30]];
+  PREF.forEach(([n,la,ln])=>L.marker([la,ln],{interactive:false,icon:L.divIcon({className:'g-label g-pref',html:n,iconSize:null})}).addTo(map));
+  const CITY=[['東京',35.681,139.767,1],['千葉',35.607,140.106,0],['横浜',35.444,139.638,0],['川崎',35.531,139.703,0],['柏',35.868,139.976,0],['銚子',35.735,140.827,0],['鎌倉',35.319,139.546,0],['高崎',36.322,139.013,0]];
+  CITY.forEach(([n,la,ln,big])=>L.marker([la,ln],{interactive:false,icon:L.divIcon({className:'g-label g-city'+(big?' big':''),html:'<span class="dot"></span>'+n,iconSize:null})}).addTo(map));
   map.fitBounds(layer.getBounds(),{padding:[14,14]});
 })();
 </script>
